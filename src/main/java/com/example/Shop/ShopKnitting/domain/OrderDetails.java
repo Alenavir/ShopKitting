@@ -21,7 +21,7 @@ public class OrderDetails {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = SEQ_NAME)
     @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME, allocationSize = 1)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
@@ -31,6 +31,9 @@ public class OrderDetails {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Column(name = "amount")
     private BigDecimal amount;
+
+    @Column(name = "price")
     private BigDecimal price;
 }

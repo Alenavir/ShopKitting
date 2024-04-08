@@ -1,5 +1,6 @@
 package com.example.Shop.ShopKnitting.domain;
 
+import com.example.Shop.ShopKnitting.Enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,15 +24,17 @@ public class Order {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = SEQ_NAME)
     @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME, allocationSize = 1)
-    private Integer id;
+    private Long id;
 
     @CreationTimestamp
+    @Column(name = "createdData")
     private Date createdData;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "address")
     private String address;
 
     @ManyToMany(cascade = CascadeType.ALL)

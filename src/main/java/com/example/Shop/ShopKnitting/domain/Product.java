@@ -21,7 +21,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = SEQ_NAME)
     @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME, allocationSize = 1)
-    private Integer id;
+    private Long id;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "products_categories",
