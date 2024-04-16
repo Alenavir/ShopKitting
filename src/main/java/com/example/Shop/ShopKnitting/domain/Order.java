@@ -30,9 +30,9 @@ public class Order {
     @Column(name = "createdData")
     private Date createdData;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
     @Column(name = "address")
     private String address;

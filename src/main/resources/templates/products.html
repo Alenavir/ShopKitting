@@ -8,17 +8,46 @@
 <h1>Магазин</h1>
 <h4>Товары</h4>
 <div th:each="product : ${products}">
-    <p><b th:text="${product.title}"></b> <span th:text="${product.price}"></span> |
-        <a th:href="@{/product/{id}(id=${product.id})}">Подробнее...</a></p>
+    <p>
+        <b th:text="${product.title}"></b> <span th:text="${product.price}"></span> |
+        <a th:href="@{/product/{id}(id=${product.id})}">Подробнее...</a>
+    </p>
 </div>
-
 <hr>
+<h3>Поиск товара по названию</h3>
+<form th:action="@{/product/findByTitle}" method="post">
+    Название товара: <input type="text" name="title"/><br><br>
+    <input type="submit" value="Найти">
+
+    <h3>Результат товара по названию</h3>
+
+    <div th:if="${foundProducts != null}">
+        <p>
+             <b th:text="${foundProducts.title}"></b> <span th:text="${foundProducts.price}"></span>
+        </p>
+    </div>
+    <div th:unless="${foundProducts == null}">
+        <p th:if="${param.title == null || foundProducts == null}">Нет такого товара</p>
+    </div>
+</form>
+<hr>
+
+
+
+
+<!--<h3>Поиск товара по идентификатору</h3>-->
+<!--<form th:action="@{/product/findById/(id}(id=${product.id})}}" method="post">-->
+<!--    Идентификатор товара: <input type="text" name="id"><br><br>-->
+<!--    <input type="submit" value="Найти">-->
+<!--</form>-->
+<!--<hr>-->
 <h3>Создать новый товар</h3>
 <form th:action="@{/product/create}" method="post">
     Название товара: <input type="text" name="title"><br><br>
-    <!-- Другие поля для товара могут быть добавлены здесь -->
+    Цена товара: <input type="BigDecimal" name="price"><br><br>
     <input type="submit" value="Создать">
 </form>
 </body>
 </html>
+
 
