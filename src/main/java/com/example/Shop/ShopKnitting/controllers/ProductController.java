@@ -1,9 +1,8 @@
 package com.example.Shop.ShopKnitting.controllers;
 
 import com.example.Shop.ShopKnitting.domain.Product;
-import com.example.Shop.ShopKnitting.services.products.ProductService;
+import com.example.Shop.ShopKnitting.services.ProductService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

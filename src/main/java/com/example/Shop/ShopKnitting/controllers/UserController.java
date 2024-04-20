@@ -1,10 +1,7 @@
 package com.example.Shop.ShopKnitting.controllers;
 
-import com.example.Shop.ShopKnitting.domain.Product;
 import com.example.Shop.ShopKnitting.domain.User;
-import com.example.Shop.ShopKnitting.repository.UserRepository;
-import com.example.Shop.ShopKnitting.services.products.UserService;
-import jakarta.persistence.Column;
+import com.example.Shop.ShopKnitting.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

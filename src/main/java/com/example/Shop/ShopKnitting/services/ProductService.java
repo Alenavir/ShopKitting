@@ -1,4 +1,4 @@
-package com.example.Shop.ShopKnitting.services.products;
+package com.example.Shop.ShopKnitting.services;
 
 import com.example.Shop.ShopKnitting.domain.Product;
 import com.example.Shop.ShopKnitting.repository.ProductRepository;
