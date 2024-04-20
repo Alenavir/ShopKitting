@@ -2,21 +2,18 @@ package com.example.Shop.ShopKnitting.controllers;
 
 import com.example.Shop.ShopKnitting.domain.Product;
 import com.example.Shop.ShopKnitting.services.products.ProductService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.logging.Logger;
-
 @Controller
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping("/")
+    @GetMapping("/products")
     public String products(Model model) {
         model.addAttribute("products", productService.getListProducts());
         return "products";
@@ -28,39 +25,38 @@ public class ProductController {
         return "product-info";
     }
 
-    @PostMapping("/product/create")
+    @PostMapping("/product")
     public String createProduct(Product product){
         productService.saveProduct(product);
-        return "redirect:/";
+        return "redirect:/products";
     }
 
     @PostMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
-        return "redirect:/";
+        return "redirect:/products";
     }
     @PostMapping("/product/update")
     public String updateProduct(Product product) {
         productService.updateProduct(product);
-        return "redirect:/";
+        return "redirect:/products";
     }
 
-    @PostMapping("/product/findByTitle")
-    public String findByTitle(@RequestParam("title") String title, Model model) {
+    @GetMapping("/product/title")
+    public String findByTitle(@RequestParam String title, Model model) {
         if (title != null) {
             try {
                 Product foundProductsByTitle = productService.findByTitle(title);
                 model.addAttribute("foundProductsByTitle", foundProductsByTitle);
-                System.out.println(foundProductsByTitle);
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return "redirect:/";
+        return "products";
     }
-    @PostMapping("/product/findById")
-    public String findById(@RequestParam("id") Long id, Model model) {
+    @GetMapping("/product/id")
+    public String findById(@RequestParam Long id, Model model) {
         if (id > 0) {
             try {
                 Product foundProductsById = productService.findById(id);
@@ -70,6 +66,6 @@ public class ProductController {
                 e.printStackTrace();
             }
         }
-        return "redirect:/";
+        return "products";
     }
 }

@@ -40,8 +40,6 @@ public class User{
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
-    private boolean active;
-
     @OneToOne(cascade = CascadeType.REMOVE)
     private Bucket bucket;
 }

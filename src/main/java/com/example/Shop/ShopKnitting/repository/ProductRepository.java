@@ -1,4 +1,4 @@
-package com.example.Shop.ShopKnitting.repository.products;
+package com.example.Shop.ShopKnitting.repository;
 
 import com.example.Shop.ShopKnitting.domain.Product;
 import org.hibernate.sql.ast.tree.expression.JdbcParameter;
