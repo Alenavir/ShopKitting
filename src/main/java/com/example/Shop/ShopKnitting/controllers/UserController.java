@@ -18,13 +18,13 @@ public class UserController {
     @GetMapping("/users")
     public String products(Model model) {
         model.addAttribute("users", userService.getListProducts());
-        return "user";
+        return "adminPanel/user";
     }
 
     @GetMapping("/user/{id}")
     public String productInfo(@PathVariable Long id, Model model){
         model.addAttribute("user", userService.findById(id));
-        return "user-info";
+        return "adminPanel/user-info";
     }
 
     @PostMapping("/user")
@@ -55,7 +55,7 @@ public class UserController {
                 e.printStackTrace();
             }
         }
-        return "user";
+        return "adminPanel/user";
     }
     @GetMapping("/user/id")
     public String findById(@RequestParam Long id, Model model) {
@@ -68,6 +68,6 @@ public class UserController {
                 e.printStackTrace();
             }
         }
-        return "user";
+        return "adminPanel/user";
     }
 }

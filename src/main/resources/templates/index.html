@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная страница магазина</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1, h4 {
+      color: #333;
+      text-align: center;
+    }
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .product {
+      width: calc(33.33% - 20px); /* 33.33% ширины с учетом отступов между продуктами */
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .product-details {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .search-form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .search-form input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .search-form input[type="submit"] {
+      padding: 8px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная страница магазина</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1, h4 {
+      color: #333;
+      text-align: center;
+    }
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .product {
+      width: calc(33.33% - 20px); /* 33.33% ширины с учетом отступов между продуктами */
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .product-details {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .search-form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .search-form input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .search-form input[type="submit"] {
+      padding: 8px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="navbar">
+  <a href="/profile">Профиль</a>
+  <a href="/">Каталог</a>
+  <a href="/bucket">Корзина</a>
+</div>
+<div class="container">
+  <h1>Главная страница магазина</h1>
+  <div class="search-form">
+    <form action="/index/title" method="get">
+      <input type="text" name="title" placeholder="Поиск по названию товара">
+      <input type="submit" value="Поиск">
+    </form>
+  </div>
+  <h4>Все продукты</h4>
+  <div class="products-container">
+    <!-- Продукты из списка products -->
+    <div th:each="product : ${products}" class="product">
+      <div class="product-details">
+        <h3 th:text="${product.title}"></h3>
+        <p th:text="'$' + ${product.price}"></p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

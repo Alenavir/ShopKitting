@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -34,12 +35,12 @@ public class User{
     @Column(name = "password", length = 1000)
     private String password;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role",
-        joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles = new HashSet<>();
+    @Column(name = "roles")
+    private String roles;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private Bucket bucket;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
 }

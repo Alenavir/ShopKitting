@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BucketRepository extends JpaRepository<Bucket, Long> {
 
     Bucket findFirstByOrderByIdDesc();
-
     Bucket findByUser(User user);
 }

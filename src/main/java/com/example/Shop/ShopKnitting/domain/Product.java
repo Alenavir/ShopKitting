@@ -1,15 +1,15 @@
 package com.example.Shop.ShopKnitting.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,8 +29,21 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
+    @Column(name = "title", nullable = false, columnDefinition = "text")
     private String title;
 
-    private BigDecimal price;
+    @Column(name = "description", nullable = false, columnDefinition = "text")
+    private String description;
+
+    private int price;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+    List<Image> imageList = new ArrayList<>();
+
+    // в этом методе получаем объет фотографии, который будет помещет в лист фотографий
+    public void addImageProduct(Image image){
+        image.setProduct(this); // указываем что работаеи с текущим продуктом
+        imageList.add(image); // и добавляем этот объект в лист
+    }
 
 }

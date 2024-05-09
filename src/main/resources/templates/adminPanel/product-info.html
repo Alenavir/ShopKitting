@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopkittong</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h4 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1>Shopkittong</h1>
+  <hr>
+  <h4>Подробная информация о товаре</h4>
+  <form th:action="@{/product/update}" method="post">
+    <input type="hidden" name="id" th:value="${product.id}"/>
+    <label for="title">Новое название товара:</label>
+    <input type="text" id="title" name="title" th:value="${product.title}"/><br>
+    <label for="price">Новая цена:</label>
+    <input type="text" id="price" name="price" th:value="${product.price}"/><br>
+    <input type="submit" value="Изменить товар"/>
+  </form>
+  <hr>
+  <form th:action="@{/product/delete/{id}(id=${product.id})}" method="post">
+    <input type="submit" value="Удалить товар"/>
+  </form>
+</div>
+</body>
+</html>

@@ -32,8 +32,8 @@ public class OrderDetails {
     private Product product;
 
     @Column(name = "amount")
-    private BigDecimal amount;
+    private int amount;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private int price;
 }

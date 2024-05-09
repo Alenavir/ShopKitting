@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 50%;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1, h4 {
+      color: #333;
+      text-align: center;
+    }
+    form {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: auto auto; /* два столбца */
+      gap: 10px; /* промежуток между элементами */
+    }
+    input[type="text"], input[type="submit"] {
+      width: calc(100% - 10px); /* ширина на 10px меньше контейнера */
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      width: 100px; /* ширина кнопок */
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto; /* центрирование кнопок */
+    }
+    .checkbox-label {
+      display: flex; /* использование flexbox для выравнивания элементов */
+      align-items: center; /* центрирование элементов по вертикали */
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>User</h1>
+  <hr>
+  <h4>Подробная информация о User</h4>
+  <form th:action="@{/user/update}" method="post">
+    <input type="hidden" name="id" th:value="${user.id}"/> <!-- Скрытое поле для передачи идентификатора товара -->
+    <label for="name">Name: </label>
+    <input type="text" id="name" name="name" th:value="${user.name}"/><br>
+    <label for="email">Новая Email: </label>
+    <input type="text" id="email" name="email" th:value="${user.email}"/><br>
+    <label for="password">Новая Password: </label>
+    <input type="text" id="password" name="password" th:value="${user.password}"/><br>
+    <span th:text="${user.getRoles}"></span><br>
+    <label>Выберите роли:</label><br>
+    <div class="checkbox-group">
+      <div class="checkbox-label">
+        <input type="checkbox" name="roles" value="USER" th:checked="${user.roles.contains('USER')}"/>
+        <span>Пользователь</span>
+      </div>
+      <div class="checkbox-label">
+        <input type="checkbox" name="roles" value="ADMIN" th:checked="${user.roles.contains('ADMIN')}"/>
+        <span>Администратор</span>
+      </div>
+      <div class="checkbox-label">
+        <input type="checkbox" name="roles" value="GUEST" th:checked="${user.roles.contains('GUEST')}"/>
+        <span>Гость</span>
+      </div>
+    </div>
+    <input type="submit" value="Изменить"/>
+  </form>
+  <hr>
+  <form th:action="@{/user/delete/{id}(id=${user.id})}" method="post">
+    <input type="submit" value="Удалить"/>
+  </form>
+</div>
+</body>
+</html>

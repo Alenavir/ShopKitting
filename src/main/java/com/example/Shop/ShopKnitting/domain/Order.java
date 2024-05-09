@@ -37,7 +37,7 @@ public class Order {
     @Column(name = "address")
     private String address;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<OrderDetails> details;
 
     @Enumerated(EnumType.STRING)

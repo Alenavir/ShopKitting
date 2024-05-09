@@ -15,13 +15,13 @@ public class ProductController {
     @GetMapping("/products")
     public String products(Model model) {
         model.addAttribute("products", productService.getListProducts());
-        return "products";
+        return "adminPanel/products";
     }
 
     @GetMapping("/product/{id}")
     public String productInfo(@PathVariable Long id, Model model){
         model.addAttribute("product", productService.findById(id));
-        return "product-info";
+        return "adminPanel/product-info";
     }
 
     @PostMapping("/product")
@@ -52,7 +52,7 @@ public class ProductController {
                 e.printStackTrace();
             }
         }
-        return "products";
+        return "adminPanel/products";
     }
     @GetMapping("/product/id")
     public String findById(@RequestParam Long id, Model model) {
@@ -65,6 +65,6 @@ public class ProductController {
                 e.printStackTrace();
             }
         }
-        return "products";
+        return "adminPanel/products";
     }
 }

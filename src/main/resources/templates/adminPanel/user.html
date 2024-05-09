@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ShopKnitting</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 60%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h4 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="submit"] {
+            width: calc(100% - 10px); /* ширина на 10px меньше контейнера */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100px; /* ширина кнопок */
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto; /* центрирование кнопок */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .link-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .link-container a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .link-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1>Магазин</h1>
+  <h4>User</h4>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Email</th>
+      <th>Действия</th>
+    </tr>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.id}"></td>
+      <td th:text="${user.name}"></td>
+      <td th:text="${user.email}"></td>
+      <td><a th:href="@{/user/{id}(id=${user.id})}">Подробнее...</a></td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <div class="search-form">
+    <h3>Поиск пользователя по email</h3>
+    <form th:action="@{/user/email}" method="get">
+      Email пользователя: <input type="text" name="email"/><br><br>
+      <input type="submit" value="Найти">
+    </form>
+  </div>
+
+  <div th:if="${foundUserByEmail != null}">
+    <h3>Результат поиска пользователя</h3>
+    <p>
+      <b th:text="${foundUserByEmail.getName}"></b>
+      <span th:text="${foundUserByEmail.getEmail}"></span>
+      <span th:text="${foundUserByEmail.getRoles}"></span>
+    </p>
+  </div>
+  <div th:if="${foundUserByEmail == null}">
+    <p>Нет такого пользователя</p>
+  </div>
+
+  <hr>
+
+  <div class="search-form">
+    <h3>Поиск пользователя по ID</h3>
+    <form th:action="@{/user/id}" method="get">
+      ID пользователя: <input type="text" name="id"><br><br>
+      <input type="submit" value="Найти">
+    </form>
+  </div>
+
+  <div th:if="${foundUserById != null}">
+    <h3>Результат поиска пользователя</h3>
+    <p>
+      <b th:text="${foundUserById.getName}"></b>
+      <span th:text="${foundUserById.getEmail}"></span>
+      <span th:text="${foundUserById.getRoles}"></span>
+    </p>
+  </div>
+  <div th:if="${foundUserById == null}">
+    <p>Нет такого пользователя</p>
+  </div>
+
+  <hr>
+
+  <div class="create-form">
+    <h3>Создать нового пользователя</h3>
+    <form th:action="@{/user}" method="post">
+      Name: <input type="text" name="name"><br><br>
+      Email: <input type="text" name="Email"><br><br>
+      Password: <input type="text" name="password"><br><br>
+      <input type="hidden" name="roles" value="USER">
+      <input type="submit" value="Создать">
+    </form>
+  </div>
+  <!-- Ссылка на страницу работы с продуктами -->
+  <div class="link-container">
+    <a href="/products">Перейти к управлению продуктами</a>
+  </div>
+</div>
+</body>
+</html>
+
+
+
